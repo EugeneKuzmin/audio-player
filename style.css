@@ -1,0 +1,11 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.wrapper{
+    padding: clamp(2rem,2rem + 3vw, 10rem);
+
+}
