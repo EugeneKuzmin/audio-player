@@ -3,12 +3,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient( bottom right #b968c5 skyblue);
+    position: relative;
 
 }
 .wrapper{
     padding: clamp(2rem,2rem + 3vw, 10rem);
 
 }
+
 
 .audio-player {
     display: grid;
@@ -70,36 +73,100 @@ body {
     }
 }
 
-.track-list{
-    width: 100%;
-    filter: blur(4rem);
+
     
-}
+    .album-art {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        height: 180px;
+        width: 180px;
+        border-radius: 50%;
+        box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0);
+        transform: scale(1);
+        transition: all .5s ease;
 
-.track {
-    width: 80%;
-    height: 3rem;
-    background-color: hsla(0, 0%, 95%, 0.685);
-    border-radius: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding: 1rem;
-    list-style: none;
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            background-color: #fff;
+            border-radius: 50%;
+            z-index: 5;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 80px;
+            background-image: 	url('https://i.scdn.co/image/9dcbd30dbe0c621cbaeae427cf80eff9877b4fcd');
+        }
+    }
+    
+    &.active .album-art {
+        box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
+        transform: scale(1.2);
+        transition: all .5s ease;
+    }
+    
+    &.active .album-art::before {
+        animation: rotation 3s infinite linear;
+        -webkit-animation: rotation 3s infinite linear;
+        animation-fill-mode: forwards;
+    }
+    
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .track-list{
+        width: 100%;
+        filter: blur(4rem);
+        
+    }
+
+    .track {
+        width: 80%;
+        height: 3rem;
+        background-color: hsla(0, 0%, 95%, 0.685);
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding: 1rem;
+        list-style: none;
 
 
-}
+    }
 
-.track:hover{
-    cursor: pointer;
-}
+    .track:hover{
+        cursor: pointer;
+    }
+    
+    .list-track-name{
+        font-family: sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
 
-.list-track-name{
-    font-family: sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.list-track-author{
-    font-family: sans-serif;
-    font-size: .7rem;
-    font-weight: 600;
-}
+    .list-track-author{
+        font-family: sans-serif;
+        font-size: .7rem;
+        font-weight: 600;
+    }

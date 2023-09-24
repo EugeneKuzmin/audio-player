@@ -47,6 +47,7 @@ const updateTrackInfo = (indx) => {
 
 trackArr.forEach(x=>addTrackToList(x))
 
+
 const trackList = tracksContainer.querySelectorAll('[role="track-item"]')
 trackList.forEach((el,trackitem)=>{
     el.addEventListener('click',
@@ -86,3 +87,27 @@ playContainer.addEventListener('click',
     pause.classList.toggle('non-active')
     audio.paused?audio.play():audio.pause()
 },false)
+
+audioPlayer.querySelector('.volume-button').addEventListener('click',()=>{
+    const volumeEl =audioPlayer.querySelector('.volume-container .volume')
+    audio.muted = !audio.muted
+    if(audio.muted){
+        volumeEl.classList.remove("icono-volumeMedium")
+        volumeEl.classList.add("icono-volumeMute")
+    }else{
+        volumeEl.classList.remove("icono-volumeMute")
+        volumeEl.classList.remove("icono-volumeMedium")
+    }
+
+})
+
+function getTimeCodeFromNun(num){
+    let seconds = parseInt(num)
+    let minutes = parseInt(seconds / 60)
+    seconds -= minutes * 60
+    const hours = parseInt(minutes / 60)
+    minutes -= hours * 60
+    if( hours === 0) return `${minutes}:${String(seconds % 60).padStart(2,0)}`
+    return `${String(hours).padStart(2,0)}:${minutes}:${String(seconds % 60).padStart(2,0)}`
+
+}
