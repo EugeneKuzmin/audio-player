@@ -55,6 +55,12 @@ body {
         justify-content: center;
         align-items: center;
     }
+    .play-container {
+        > .non-active[data-pause],
+        .non-active[data-play]{
+            display: none;
+        }
+    }
     .time {
         display: flex;
         > * {
