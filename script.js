@@ -1,9 +1,12 @@
 const audioPlayer = document.querySelector('.audio-player')
-const audio = new Audio("https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3")
+const audio = new Audio("./sound/Pendant_que_les_champs_brûlent.mp3")
 const progress = audioPlayer.querySelector('.progress');
 const progressPointer = document.getElementById('progress-pointer');
 const volumeProgressPointer = document.getElementById('volume-progress-pointer');
 const volumePercentage = audioPlayer.querySelector('.volume-percentage');
+const nextBtn = audioPlayer.querySelector('.next-next');
+const previousBtn = audioPlayer.querySelector('.previous-previous');
+const cover = document.querySelector('.cover');
 
 
 const tracksContainer = document.querySelector('.tracks-list')
@@ -11,12 +14,12 @@ const trackName = document.querySelector('[data-trackname]')
 const trackAuthor = document.querySelector('[data-trackauthor]')
 
 const trackInfo = document.querySelector('.track-info .name')
-let firstDownload = true;
+let currentTrack = 0;
 
 const trackArr = [
-    {name:'a1',artist:'beyonce',path:'./sound/beyonce.mp3'},
-    {name:'Feel',artist:'Mahmut Orhan feat Sena Sener',path:'./sound/mahmut_orhan_-_feel_(feat._sena_sener).mp3'},
-    {name:'a3',artist:'b3',path:'https://s1.muzflix.net/files/mp3/mahmut_orhan_-_feel_(feat._sena_sener)_muzflix.net_128.mp3'},
+    {name:'Niagara',artist:'Pendant que les champs brûlent',path:'./sound/Pendant_que_les_champs_brûlent.mp3',cover:'./img/ZoVlCW5nVIQ.jpg'},
+    {name:'Feel',artist:'Mahmut Orhan feat Sena Sener',path:'./sound/mahmut_orhan_-_feel_(feat._sena_sener).mp3',cover:'./img/400x400bb.jpg'},
+    {name:'Fade',artist:'Alan Walker',path:'./sound/Alan Walker - Fade (Original Mix).mp3',cover:'./img/alan-walker-faded.jpg'},
 ]
 
 audio.addEventListener('loadeddata',
@@ -48,6 +51,10 @@ const updateTrackInfo = (indx) => {
     trackInfo.textContent = trackArr[indx].name + '  -  ' +trackArr[indx].artist
 }  
 
+const updatePicture = (indx) => {
+    cover.style.backgroundImage = `url(${trackArr[indx].cover})`;
+}  
+
 trackArr.forEach(x=>addTrackToList(x))
 
 
@@ -60,6 +67,28 @@ trackList.forEach((el,trackitem)=>{
         audio.play()
         updateTrackInfo(trackitem)
     })
+})
+
+const startPlay = (i) => {
+    audio.src = trackArr[i].path
+    audio.load()
+    audio.play()
+    updateTrackInfo(i)
+    updatePicture(i)
+}
+
+//next button
+nextBtn.addEventListener('click',()=>{
+    currentTrack==trackArr.length-1?currentTrack=0:currentTrack++
+    startPlay(currentTrack)
+})
+//privious button
+
+previousBtn.addEventListener('click',()=>{
+
+    currentTrack==0?currentTrack=trackArr.length-1:currentTrack--
+    startPlay(currentTrack)
+
 })
 
 
