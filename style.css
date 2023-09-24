@@ -9,3 +9,57 @@ body {
     padding: clamp(2rem,2rem + 3vw, 10rem);
 
 }
+
+.audio-player {
+    display: grid;
+    grid-template-rows: 6px auto;
+    width: max(30rem,60vw);
+    background: hsl(0, 0%, 14%); 
+    color: white;
+    box-shadow: 0 0 20px 0 #000a;
+}
+
+.slider {
+    position:relative;
+    background: white;
+    width: 100%;
+    cursor:pointer;
+    box-shadow: 0 2px 10px 0 #0008;
+    .progress {
+        width: 0;
+        height: 100%;
+        background-color: coral;
+        transition: 0.25s;
+        .progress-pointer {
+            right: -8px;
+            top: -6px;
+            height: 16px;
+            width: 16px;
+            border-radius: 8px;
+            background-color: #44BFA3;
+            position: absolute;
+            pointer-events: all;
+            box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.32);
+          }
+    }
+}
+
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 2rem;
+    > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .time {
+        display: flex;
+        > * {
+            padding: 2px;
+        }
+        
+    }
+}
