@@ -1,3 +1,19 @@
+:root {
+    /* colors */
+    --clr-red: 0 100% 60%;
+    --clr-blue-gray: 231, 81%, 23%;
+}
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 body {
     height: 100vh;
     display: flex;
@@ -9,9 +25,7 @@ body {
 }
 .wrapper{
     padding: clamp(2rem,2rem + 3vw, 10rem);
-
 }
-
 
 .audio-player {
     display: grid;
@@ -31,7 +45,7 @@ body {
     .progress {
         width: 0;
         height: 100%;
-        background-color: coral;
+        background-color: hsl(var(--clr-red));
         transition: 0.25s;
         .progress-pointer {
             left: 0;
@@ -39,10 +53,10 @@ body {
             height: 16px;
             width: 16px;
             border-radius: 8px;
-            background-color: #44BFA3;
+            background-color: hsl(var(--clr-blue-gray));
             position: absolute;
             pointer-events: all;
-            box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.32);
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
           }
     }
 }
@@ -52,8 +66,10 @@ body {
     display: flex;
     .volume-container {
         display: flex;
+                align-items: center;
         .volume-tracker {
                 position:relative;
+                
                 
                 width: 0;
                 height: 15px;
@@ -61,20 +77,20 @@ body {
                 
                 transition: .25s;
                 .volume-percentage {
-                background: coral;
-                height: 100%;
-                width: 75%;
-                .progress-pointer {
-                    left: 0;
-                    top: -6px;
-                    height: 16px;
-                    width: 16px;
-                    border-radius: 8px;
-                    background-color: #44BFA3;
-                    position: absolute;
-                    pointer-events: all;
-                    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.32);
-                  }
+                    background: hsl(var(--clr-red));;
+                    height: 100%;
+                    width: 75%;
+                    .progress-pointer {
+                        left: 0;
+                        top: -6px;
+                        height: 16px;
+                        width: 16px;
+                        border-radius: 8px;
+                        background-color: #44BFA3;
+                        position: absolute;
+                        pointer-events: all;
+                        box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.32);
+                    }
                 }
             }
             &:hover {

@@ -14,8 +14,8 @@ const trackInfo = document.querySelector('.track-info .name')
 let firstDownload = true;
 
 const trackArr = [
-    {name:'a1',artist:'b1',path:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3'},
-    {name:'a2',artist:'b2',path:'https://s1.muzflix.net/files/mp3/mahmut_orhan_-_feel_(feat._sena_sener)_muzflix.net_128.mp3'},
+    {name:'a1',artist:'beyonce',path:'./sound/beyonce.mp3'},
+    {name:'Feel',artist:'Mahmut Orhan feat Sena Sener',path:'./sound/mahmut_orhan_-_feel_(feat._sena_sener).mp3'},
     {name:'a3',artist:'b3',path:'https://s1.muzflix.net/files/mp3/mahmut_orhan_-_feel_(feat._sena_sener)_muzflix.net_128.mp3'},
 ]
 
@@ -108,7 +108,7 @@ volumeTracker.addEventListener('click', e => {
   const newVolume = e.offsetX / parseInt(trackerWidth);
   audio.volume = newVolume;
   volumePercentage.style.width = newVolume * 100 + '%';
-  volumeProgressPointer.style.left =volumePercentage.clientWidth + 'px'
+//   volumeProgressPointer.style.left =volumePercentage.clientWidth + 'px'
 })
 
 function getTimeCodeFromNun(num){
