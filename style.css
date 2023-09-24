@@ -69,3 +69,37 @@ body {
         
     }
 }
+
+.track-list{
+    width: 100%;
+    filter: blur(4rem);
+    
+}
+
+.track {
+    width: 80%;
+    height: 3rem;
+    background-color: hsla(0, 0%, 95%, 0.685);
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    list-style: none;
+
+
+}
+
+.track:hover{
+    cursor: pointer;
+}
+
+.list-track-name{
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.list-track-author{
+    font-family: sans-serif;
+    font-size: .7rem;
+    font-weight: 600;
+}
