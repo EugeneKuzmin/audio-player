@@ -1,7 +1,10 @@
 const audioPlayer = document.querySelector('.audio-player')
 const audio = new Audio("https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3")
 const progress = audioPlayer.querySelector('.progress');
-const progressPointer = document.querySelector('.progress-pointer');
+const progressPointer = document.getElementById('progress-pointer');
+const volumeProgressPointer = document.getElementById('volume-progress-pointer');
+const volumePercentage = audioPlayer.querySelector('.volume-percentage');
+
 
 const tracksContainer = document.querySelector('.tracks-list')
 const trackName = document.querySelector('[data-trackname]')
@@ -64,7 +67,7 @@ audio.addEventListener('timeupdate', updateProgress);
 
 function updateProgress() {
     progress.style.width = audio.currentTime / audio.duration * 100 + "%";
-    progressPointer.style.left = audio.currentTime / audio.duration * 100 - 6 + "px"
+    progressPointer.style.left = progress.clientWidth + 'px'
     
   }
 
@@ -88,17 +91,24 @@ playContainer.addEventListener('click',
     audio.paused?audio.play():audio.pause()
 },false)
 
-audioPlayer.querySelector('.volume-button').addEventListener('click',()=>{
-    const volumeEl =audioPlayer.querySelector('.volume-container .volume')
-    audio.muted = !audio.muted
-    if(audio.muted){
-        volumeEl.classList.remove("icono-volumeMedium")
-        volumeEl.classList.add("icono-volumeMute")
-    }else{
-        volumeEl.classList.remove("icono-volumeMute")
-        volumeEl.classList.remove("icono-volumeMedium")
-    }
+//sound
+loudSpeaker = document.querySelector('[data-speaker]')
+loudSpeakerOff = document.querySelector('[data-speaker-off]')
 
+audioPlayer.querySelector('.loud-speaker').addEventListener('click',()=>{
+    audio.muted = !audio.muted
+    loudSpeaker.classList.toggle('non-active')
+    loudSpeakerOff.classList.toggle('non-active')
+
+})
+
+const volumeTracker = audioPlayer.querySelector(".volume-tracker");
+volumeTracker.addEventListener('click', e => {
+  const trackerWidth = window.getComputedStyle(volumeTracker).width;
+  const newVolume = e.offsetX / parseInt(trackerWidth);
+  audio.volume = newVolume;
+  volumePercentage.style.width = newVolume * 100 + '%';
+  volumeProgressPointer.style.left =volumePercentage.clientWidth + 'px'
 })
 
 function getTimeCodeFromNun(num){

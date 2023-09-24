@@ -34,7 +34,7 @@ body {
         background-color: coral;
         transition: 0.25s;
         .progress-pointer {
-            right: -8px;
+            left: 0;
             top: -6px;
             height: 16px;
             width: 16px;
@@ -48,6 +48,53 @@ body {
 }
 
 
+.track-info {
+    display: flex;
+    .volume-container {
+        display: flex;
+        .volume-tracker {
+                position:relative;
+                
+                width: 0;
+                height: 15px;
+                background: white;
+                
+                transition: .25s;
+                .volume-percentage {
+                background: coral;
+                height: 100%;
+                width: 75%;
+                .progress-pointer {
+                    left: 0;
+                    top: -6px;
+                    height: 16px;
+                    width: 16px;
+                    border-radius: 8px;
+                    background-color: #44BFA3;
+                    position: absolute;
+                    pointer-events: all;
+                    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.32);
+                  }
+                }
+            }
+            &:hover {
+                .volume-tracker {
+                width: 5rem;
+                }
+            }
+        }
+
+    .loud-speaker > .non-active{
+        display: none;
+}
+
+
+}
+
+
+
+
+
 .controls {
     display: flex;
     justify-content: space-between;
@@ -58,12 +105,10 @@ body {
         justify-content: center;
         align-items: center;
     }
-    .play-container {
-        > .non-active[data-pause],
-        .non-active[data-play]{
+    .play-container > .non-active{
             display: none;
-        }
     }
+   
     .time {
         display: flex;
         > * {
@@ -72,8 +117,6 @@ body {
         
     }
 }
-
-
     
     .album-art {
         position: absolute;
