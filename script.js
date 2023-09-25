@@ -83,6 +83,7 @@ trackList.forEach((el,trackitem)=>{
         updateTrackInfo(trackitem)
         updatePicture(trackitem)
         updateTrackList(trackitem)
+        currentTrack = trackitem
     })
 })
 
@@ -146,7 +147,6 @@ audio.addEventListener("ended",
 ()=>{
     setTimeout(()=>
     {
-        currentTrack++
         currentTrack==trackArr.length-1?currentTrack=0:currentTrack++
         startPlay(currentTrack)
 
