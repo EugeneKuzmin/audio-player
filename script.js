@@ -7,6 +7,11 @@ const volumePercentage = audioPlayer.querySelector('.volume-percentage');
 const nextBtn = audioPlayer.querySelector('.next-next');
 const previousBtn = audioPlayer.querySelector('.previous-previous');
 const cover = document.querySelector('.cover');
+const currentTime = document.querySelector('.current-time');
+const trackLength = document.querySelector('.track-length');
+const playerTrackName = document.querySelector('.track-name');
+const playerTrackArtist = document.querySelector('.artist-name');
+
 
 
 const tracksContainer = document.querySelector('.tracks-list')
@@ -17,7 +22,7 @@ const trackInfo = document.querySelector('.track-info .name')
 let currentTrack = 0;
 
 const trackArr = [
-    {name:'Niagara',artist:'Pendant que les champs brûlent',path:'./sound/Pendant_que_les_champs_brûlent.mp3',cover:'./img/ZoVlCW5nVIQ.jpg'},
+    {name:'Pendant que les champs brûlent',artist:'Niagara',path:'./sound/Pendant_que_les_champs_brûlent.mp3',cover:'./img/ZoVlCW5nVIQ.jpg'},
     {name:'Feel',artist:'Mahmut Orhan feat Sena Sener',path:'./sound/mahmut_orhan_-_feel_(feat._sena_sener).mp3',cover:'./img/400x400bb.jpg'},
     {name:'Fade',artist:'Alan Walker',path:'./sound/Alan Walker - Fade (Original Mix).mp3',cover:'./img/alan-walker-faded.jpg'},
 ]
@@ -25,8 +30,8 @@ const trackArr = [
 audio.addEventListener('loadeddata',
 ()=>
 {
-    audioPlayer.querySelector('.time .length').textContent = getTimeCodeFromNun(audio.duration)
-    audio.volume = .75
+    trackLength.textContent = getTimeCodeFromNun(audio.duration)
+    
     
 },false
 )
@@ -48,7 +53,8 @@ const addTrackToList = (x) =>{
 }
 
 const updateTrackInfo = (indx) => {
-    trackInfo.textContent = trackArr[indx].name + '  -  ' +trackArr[indx].artist
+    playerTrackName.textContent = trackArr[indx].name
+    playerTrackArtist.textContent = trackArr[indx].artist
 }  
 
 const updatePicture = (indx) => {
@@ -77,7 +83,10 @@ trackList.forEach((el,trackitem)=>{
 })
 
 const initialSettings = () => {
+    updatePicture(0)
     updateTrackList(0)
+    updateTrackInfo(0)
+    audio.volume = .75
 }
 
 
@@ -106,15 +115,20 @@ previousBtn.addEventListener('click',()=>{
 })
 
 
+//update time scrolls & time info
 audio.addEventListener('timeupdate', updateProgress);
 
 function updateProgress() {
     progress.style.width = audio.currentTime / audio.duration * 100 + "%";
     progressPointer.style.left = progress.clientWidth + 'px'
+}
+
+setInterval(()=>{
+    currentTime.textContent = getTimeCodeFromNun(audio.currentTime)
+},500)
     
-  }
 
-
+//slider listener
 const slider = audioPlayer.querySelector('.slider')
 slider.addEventListener("click",
 e => {
