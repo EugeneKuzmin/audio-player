@@ -12,7 +12,9 @@ const trackLength = document.querySelector('.track-length');
 const playerTrackName = document.querySelector('.track-name');
 const playerTrackArtist = document.querySelector('.artist-name');
 
-
+const playContainer = audioPlayer.querySelector('.play-container')
+const play = playContainer.querySelector('[data-play]')
+const pause = playContainer.querySelector('[data-pause]')
 
 const tracksContainer = document.querySelector('.tracks-list')
 const trackName = document.querySelector('[data-trackname]')
@@ -75,6 +77,9 @@ trackList.forEach((el,trackitem)=>{
         audio.src = trackArr[trackitem].path
         audio.load()
         audio.play()
+        play.classList.remove('non-active')
+        pause.classList.add('non-active')
+        cover.classList.add('play-on')
         updateTrackInfo(trackitem)
         updatePicture(trackitem)
         updateTrackList(trackitem)
@@ -92,7 +97,9 @@ const startPlay = (i) => {
     audio.src = trackArr[i].path
     audio.load()
     audio.play()
-    document.querySelector('.cover').classList.add('play-on')
+    cover.classList.add('play-on')
+    play.classList.remove('non-active')
+    pause.classList.add('non-active')
     updateTrackInfo(i)
     updatePicture(i)
     updateTrackList(i)
@@ -136,9 +143,7 @@ e => {
 },false)
 
 //toggle between playing and pausing on button click 
-const playContainer = audioPlayer.querySelector('.play-container')
-const play = playContainer.querySelector('[data-play]')
-const pause = playContainer.querySelector('[data-pause]')
+
 playContainer.addEventListener('click',
 ()=>{
     play.classList.toggle('non-active')
