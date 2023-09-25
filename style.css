@@ -231,6 +231,11 @@ body {
 
     }
 
+    .track.active {
+        background-color: rgb(255, 149, 200);
+
+    }
+
     .track:hover{
         cursor: pointer;
     }

@@ -55,6 +55,11 @@ const updatePicture = (indx) => {
     cover.style.backgroundImage = `url(${trackArr[indx].cover})`;
 }  
 
+const updateTrackList = (indx) => {
+    trackList.forEach(x=>x.classList.remove('active'))
+    trackList[indx].classList.add('active')
+}  
+
 trackArr.forEach(x=>addTrackToList(x))
 
 
@@ -66,8 +71,16 @@ trackList.forEach((el,trackitem)=>{
         audio.load()
         audio.play()
         updateTrackInfo(trackitem)
+        updatePicture(trackitem)
+        updateTrackList(trackitem)
     })
 })
+
+const initialSettings = () => {
+    updateTrackList(0)
+}
+
+
 
 const startPlay = (i) => {
     audio.src = trackArr[i].path
@@ -75,6 +88,7 @@ const startPlay = (i) => {
     audio.play()
     updateTrackInfo(i)
     updatePicture(i)
+    updateTrackList(i)
 }
 
 //next button
@@ -150,3 +164,5 @@ function getTimeCodeFromNun(num){
     return `${String(hours).padStart(2,0)}:${minutes}:${String(seconds % 60).padStart(2,0)}`
 
 }
+
+initialSettings()
