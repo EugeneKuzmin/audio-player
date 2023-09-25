@@ -68,7 +68,6 @@ const updateTrackList = (indx) => {
 
 trackArr.forEach(x=>addTrackToList(x))
 
-
 const trackList = tracksContainer.querySelectorAll('[role="track-item"]')
 trackList.forEach((el,trackitem)=>{
     el.addEventListener('click',
@@ -89,12 +88,11 @@ const initialSettings = () => {
     audio.volume = .5
 }
 
-
-
 const startPlay = (i) => {
     audio.src = trackArr[i].path
     audio.load()
     audio.play()
+    cover.classList.add('play-on')
     updateTrackInfo(i)
     updatePicture(i)
     updateTrackList(i)
@@ -145,8 +143,9 @@ playContainer.addEventListener('click',
 ()=>{
     play.classList.toggle('non-active')
     pause.classList.toggle('non-active')
+    cover.classList.toggle('play-on')
     audio.paused?audio.play():audio.pause()
-},false)
+})
 
 //sound
 loudSpeaker = document.querySelector('[data-speaker]')

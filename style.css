@@ -58,14 +58,35 @@ body {
     flex-direction: column;
     align-items: center;
     .cover {
-        width: 20%;
+        width: 18%;
         aspect-ratio: 1;
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
         background-image: url('./img/ZoVlCW5nVIQ.jpg');
+        border-radius: 50%;
+    
+    
     }
 }
+
+.play-on {
+    animation: playRotate 6s infinite forwards linear;
+  }
+  
+  @-webkit-keyframes playRotate {
+    to {
+        transform: rotate(360deg);
+        transition: all 0.3s ease;
+    }
+  }
+  
+  @keyframes playRotate {
+    to {
+        transform: rotate(360deg);
+        transition: all 0.3s ease;
+    }
+  }
 
 .audio-player {
     display: grid;
@@ -237,6 +258,7 @@ body {
         color: hsl(var(--clr-extra-light-gray));
         font-size: 2cqi;
         padding: 1cqi 2cqi;
+        align-self: flex-end;
     }
     footer a {
         text-decoration: none;
