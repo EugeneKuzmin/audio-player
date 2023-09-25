@@ -1,8 +1,5 @@
 const audioPlayer = document.querySelector('.audio-player')
 const audio = new Audio("./sound/Pendant_que_les_champs_brûlent.mp3")
-const progress = audioPlayer.querySelector('.progress');
-const progressPointer = document.getElementById('progress-pointer');
-const volumeProgressPointer = document.getElementById('volume-progress-pointer');
 const volumePercentage = audioPlayer.querySelector('.volume-percentage');
 const nextBtn = audioPlayer.querySelector('.next-next');
 const previousBtn = audioPlayer.querySelector('.previous-previous');
@@ -21,6 +18,9 @@ const trackName = document.querySelector('[data-trackname]')
 const trackAuthor = document.querySelector('[data-trackauthor]')
 
 const trackInfo = document.querySelector('.track-info .name')
+const timerange = document.querySelector('#timerange')
+
+
 let currentTrack = 0;
 
 const trackArr = [
@@ -103,6 +103,7 @@ const startPlay = (i) => {
     updateTrackInfo(i)
     updatePicture(i)
     updateTrackList(i)
+    timerange.value = 0
 }
 
 //next button
@@ -124,13 +125,34 @@ previousBtn.addEventListener('click',()=>{
 audio.addEventListener('timeupdate', updateProgress);
 
 function updateProgress() {
-    progress.style.width = audio.currentTime / audio.duration * 100 + "%";
-    progressPointer.style.left = progress.clientWidth + 'px'
+    timerange.value = audio.currentTime / audio.duration
 }
 
 setInterval(()=>{
     currentTime.textContent = getTimeCodeFromNun(audio.currentTime)
 },500)
+
+timerange.addEventListener('input',
+()=>{
+    audio.removeEventListener('timeupdate',updateProgress)
+})
+timerange.addEventListener('mouseup',
+()=>{
+    audio.addEventListener('timeupdate', updateProgress);
+})
+
+//on playing audio end event
+audio.addEventListener("ended",
+()=>{
+    setTimeout(()=>
+    {
+        currentTrack++
+        currentTrack==trackArr.length-1?currentTrack=0:currentTrack++
+        startPlay(currentTrack)
+
+    },2000)
+}
+)
     
 
 //slider listener
@@ -150,6 +172,7 @@ playContainer.addEventListener('click',
     pause.classList.toggle('non-active')
     cover.classList.toggle('play-on')
     audio.paused?audio.play():audio.pause()
+    timerange.value = 0
 })
 
 //sound
@@ -169,7 +192,6 @@ volumeTracker.addEventListener('click', e => {
   const newVolume = e.offsetX / parseInt(trackerWidth);
   audio.volume = newVolume;
   volumePercentage.style.width = newVolume * 100 + '%';
-//   volumeProgressPointer.style.left =volumePercentage.clientWidth + 'px'
 })
 
 function getTimeCodeFromNun(num){

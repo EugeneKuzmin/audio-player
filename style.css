@@ -93,35 +93,31 @@ body {
 
 .audio-player {
     display: grid;
-    grid-template-rows: 0.5rem auto;
+    grid-template-rows: 0.6rem auto;
     width: max(30rem,60vw);
     background: hsl(var(--clr-dark)); 
     color: hsl(var(--clr-extra-light-gray));
 }
 
 .slider {
-    position:relative;
-    background: white;
     width: 100%;
-    cursor:pointer;
-    box-shadow: 0 2px 10px 0 #0008;
-    .progress {
-        width: 0;
-        height: 100%;
-        background-color: hsl(var(--clr-red));
-        transition: 0.25s;
-        .progress-pointer {
-            left: 0;
-            top: -6px;
-            height: 16px;
-            width: 16px;
-            border-radius: 8px;
-            background-color: hsl(var(--clr-blue-gray));
-            position: absolute;
-            pointer-events: all;
-            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
-          }
-    }
+    position: relative;
+}
+
+.slider > input[type="range"]{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: -10px  0 0 0;
+    border: none;
+    border-radius: 0;
+    background: rgb(21, 21, 24);
+    outline: none;
+}
+
+.slider > input[type="range"]:hover{
+    cursor: pointer;
 }
 
 
@@ -159,7 +155,11 @@ body {
             &:hover {
                 .volume-tracker {
                 width: 5rem;
+                cursor: pointer;
                 }
+            }
+            .loud-speaker svg:hover {
+                cursor: pointer;
             }
         }
 
