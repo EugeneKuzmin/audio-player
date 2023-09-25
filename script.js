@@ -86,7 +86,7 @@ const initialSettings = () => {
     updatePicture(0)
     updateTrackList(0)
     updateTrackInfo(0)
-    audio.volume = .75
+    audio.volume = .5
 }
 
 
