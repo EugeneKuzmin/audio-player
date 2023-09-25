@@ -92,7 +92,7 @@ const startPlay = (i) => {
     audio.src = trackArr[i].path
     audio.load()
     audio.play()
-    cover.classList.add('play-on')
+    document.querySelector('.cover').classList.add('play-on')
     updateTrackInfo(i)
     updatePicture(i)
     updateTrackList(i)
