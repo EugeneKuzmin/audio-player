@@ -19,10 +19,12 @@
     box-sizing: border-box;
 }
 body {
+    display: flex;
     height: 100vh;
+    flex-direction: column;
     font-family: var(--ff-roboto);
-    background: rgb(127,235,250);
     background: linear-gradient(90deg, rgba(127,235,250,1) 0%, rgba(238,174,174,1) 100%);
+    margin: 0;
 }
 
 /* ------------------- */
@@ -259,7 +261,8 @@ body {
         color: hsl(var(--clr-extra-light-gray));
         font-size: 2cqi;
         padding: 1cqi 2cqi;
-        align-self: flex-end;
+        margin-top: auto;
+        margin-inline: clamp(0.3rem,1rem + 1vw,1.5rem);
     }
     footer a {
         text-decoration: none;
